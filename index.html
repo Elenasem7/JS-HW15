@@ -15,6 +15,15 @@
         }
         getString('-', '65', 'a', 'p'); // 65-a-p
         getString('75', '-', 'ad', 'hg', '543'); // 75-ad-hg-543
+        
+        
+        function getString(...arr) {
+                let symbol = '-';
+                return arr.includes(symbol) ? arr.filter(curr => curr !== symbol).join(symbol) : 'No symbol';
+            }
+            console.log(getString('-', '65', 'a', 'p')); // 65-a-p
+            console.log(getString('75', '-', 'ad', 'hg', '543')); // 75-ad-hg-543
+
 
 
 
