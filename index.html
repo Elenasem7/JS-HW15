@@ -10,16 +10,15 @@
 
 
         //1) Есть функция, которая может принять неограниченное количество аргументов'-', '65', 'a', 'p', реализуйте ее так, что бы она находила дефиз и возвращала '65-a-p'
-        function getString(...arr) {
-            ///ваш код
-        }
-        getString('-', '65', 'a', 'p'); // 65-a-p
-        getString('75', '-', 'ad', 'hg', '543'); // 75-ad-hg-543
+//         function getString(...arr) {
+//             ///ваш код
+//         }
+//         getString('-', '65', 'a', 'p'); // 65-a-p
+//         getString('75', '-', 'ad', 'hg', '543'); // 75-ad-hg-543
         
         
         function getString(...arr) {
-                let symbol = '-';
-                return arr.includes(symbol) ? arr.filter(curr => curr !== symbol).join(symbol) : 'No symbol';
+                return arr.filter(curr => curr !== '-').join('-');
             }
             console.log(getString('-', '65', 'a', 'p')); // 65-a-p
             console.log(getString('75', '-', 'ad', 'hg', '543')); // 75-ad-hg-543
@@ -35,7 +34,7 @@
             var df= dfdf; //  ошибка вот она синтаксическая!
             return 3423;
         })
-        .catch((e)=> console.log('fdsfd', e));
+        .catch((e)=> console.log('fdsfd', e));        // перехватит
 
          // или здесь
          new Promise((resolve, reject) => {
@@ -44,7 +43,7 @@
             throw new Error('new errror'); // вот явно бросаем ошибку 
             return 3423;
         })
-        .catch((e)=> console.log('fdsfd', e));
+        .catch((e)=> console.log('fdsfd', e));   // перехватит
 
 
 
@@ -132,10 +131,12 @@
 
          // 5) Ну и последнее так уже чтобы расслабиться)! Пишем свой собственный push!!
          function push(array) {
-             // ваш код
+            
              return array;
          }
-
+        
+        
+        
 
     </script>
 </body>
