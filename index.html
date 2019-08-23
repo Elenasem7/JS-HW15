@@ -50,6 +50,9 @@
 
 
         // 3) Взял с проекта код!! Нужно всего лишь переписать на async await :) Запускать не нужно ибо не сработает), просто переписать а я посмотрю!
+        
+        THEN
+        
         let uploadedImage ='_.jpg';
         function pickImage() {
             let context = imagepicker.create({
@@ -120,6 +123,71 @@
         }
 
         pickImage()
+        
+        
+        ASYNC AWAIT
+        
+        let uploadedImage ='_.jpg';
+        async function pickImage() {
+            let context = imagepicker.create({
+                mode: 'single'
+        });
+            await context.authorize();
+            let selection = await context.present();
+            selection.forEach(await(selected) => {
+                        uploadedImage= selected;
+                        await cropImage();
+            });
+        }
+
+        /**
+         * Takes camera photo
+         */
+        async function takePhoto() {
+            await camera.requestPermissions()
+            let imageAsset = await camera.takePicture()
+            uploadedImage = imageAsset;
+            await cropImage();
+        }
+
+        /**
+         * Crops picture
+         */
+         async function cropImage() {
+            let source = new imageSource.ImageSource();
+            let sourceFromAsset = await source.fromAsset(this.uploadedImage);
+            let args = this.imageCropper.show(sourceFromAsset, cropOptions)
+                if (args.image !== null) {
+                            savePictureToFile(args.image);
+                }
+        }
+
+        /**
+         * Crops picture
+         */
+         function savePictureToFile(image) {
+            const folder = fs.knownFolders.documents();
+            const path = fs.path.join(folder.path, "Temp" + Date.now() + ".png");
+            const saved = image.saveToFile(path, "png");
+            if (saved) {
+                this.currentImage = image;
+                this.pictureSelected.emit(path);
+            }
+        }
+
+        function cropOptions() {
+            return isAndroid ? {
+                width: 512,
+                height: 512
+            } : {
+                    lockSquare: true
+                };
+        }
+
+        pickImage()
+
+        
+        
 
         // 4) И закрепляем промисы  
         // https://playwithpromise.herokuapp.com/api/order-review/last -
