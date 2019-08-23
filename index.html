@@ -156,7 +156,7 @@
          async function cropImage() {
             let source = new imageSource.ImageSource();
             let sourceFromAsset = await source.fromAsset(this.uploadedImage);
-            let args = this.imageCropper.show(sourceFromAsset, cropOptions)
+            let args = await this.imageCropper.show(sourceFromAsset, cropOptions)
                 if (args.image !== null) {
                             savePictureToFile(args.image);
                 }
