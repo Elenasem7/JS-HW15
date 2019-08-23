@@ -223,12 +223,25 @@
             
             
             // 5) Ну и последнее так уже чтобы расслабиться)! Пишем свой собственный push!!
-         function push(array) {
-             // ваш код
-             return array;
-         }
-        
-        let arr = [7, 6, 5, 4, 3];
+         //  function push(array) {
+        //      // ваш код
+        //      return array;
+        //  }
+      
+            function push(array, ...elem) {
+                if (Array.isArray(array)) {
+                    array.splice(array.length, 0, ...elem);
+                    return array;
+                }
+            }
+
+            let arr = [7, 6, 5, 4, 3];
+            let arr1 = [1, 5, 3];
+            let arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            console.log(push(arr, 5, 6));
+            console.log(push(arr1, 7, 8, 9));
+            console.log(push(arr2, 7, 8, 9));
+
         
         
         
